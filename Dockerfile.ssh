@@ -11,9 +11,7 @@ RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositori
   sed -i "s@^#PasswordAuthentication yes@&\nPasswordAuthentication yes@" /etc/ssh/sshd_config && \
   sed -i "s@^#PermitRootLogin.*@&\nPermitRootLogin yes@" /etc/ssh/sshd_config && \
   \
-  rc-service sshd restart && \
   rm -rf /var/cache/apk/*
-
 
 #设置默认入口程序
 ENTRYPOINT ["/bin/sh"]

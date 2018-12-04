@@ -26,8 +26,10 @@ docker run -it -d --name alpine-ssh -p 22:22  -p /yourlocaldir:/home  tekintian/
 #运行容器
 docker run -it -d --name alpine-ssh -p 22:22  -p /yourlocaldir:/home  tekintian/alpine:3.8-ssh
 
-# 登录容器，设置你自己的root密码
-
+# 登录容器，
+# 重启SSH服务
+rc-service sshd restart
+# 设置你自己的root密码
 docker exec -it alpine-ssh  sh
 # 设置你的密码
 passwd
