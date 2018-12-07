@@ -130,3 +130,14 @@ docker build -f Dockerfile.ssh -t tekintian/alpine:3.8-ssh .
 
 ~~~
 
+## Support 技术支持
+
+​	需要其他的特定环境或则模块支持，可联系定制开发容器 ， Email: tekintian@gmail.com  QQ:932256355
+
+
+
+
+
+如果您觉得本项目对您有用，请打赏支持开发，谢谢！
+
+![donate](donate.png)
