@@ -1,24 +1,32 @@
 # Alpine Docker Container for China User
 
-更换了国内源，和安装了openrc 管理工具的 Alpine Docker 镜像
+Change the mirror to mirrors.aliyun.com
+更换源为阿里云镜像加速，
+
+tekintian/alpine:latest  安装了openrc 管理工具的 Alpine Docker 镜像
+
+mini install with aliyun cdn
+
+tekintian/alpine:3.8
+tekintian/alpine:3.7
 
 
+集成了SSH服务端的alpine 3.8 docker images:
+tekintian/alpine:ssh
+
+暴露端口 22 ，  -p /yourlocaldir:/home 将本地文件夹/yourlocaldir 映射到alpine容器 /home文件夹
+
+docker run -it -d --name alpine -p 22:22 -v /yourlocaldir:/home  tekintian/alpine:3.8-ssh
+
+设置SSH登录密码
+~~~shell
+docker exec -it alpine sh
+#设置ROOT用户密码
+passwd
+~~~
 
 
-
-
-
-默认root密码：123456
-
-如果需要自定义root密码，在容器运行的时候增加环境变量 ROOT_PASS='secret-pass',  暴露端口 22 ，  -p /yourlocaldir:/home 将本地文件夹/yourlocaldir 映射到alpine容器 /home文件夹
-
-docker run -it -d --name alpine -p 22:22  -e ROOT_PASS=123456  -p /yourlocaldir:/home  tekintian/alpine:3.8-ssh
-
-
-
-
-
-- Alpine Linux 包管理
+## Alpine Linux 包管理
 
   ```shell
   apk update
@@ -35,7 +43,7 @@ docker run -it -d --name alpine -p 22:22  -e ROOT_PASS=123456  -p /yourlocaldir:
   rc-service
   openrc
 
-- 常用的RC系列命令
+## 常用的RC系列命令
 
   1.安装软件包实例
 
@@ -69,8 +77,6 @@ docker run -it -d --name alpine -p 22:22  -e ROOT_PASS=123456  -p /yourlocaldir:
 
 ```shell
 docker run -it --rm alpine /bin/ash
-# 国内用户建议先先替换alpine的源为aliyun, 否则很慢！！ 
-# sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories
 # 更新源
 # apk update
 # 安装openssh
@@ -83,7 +89,10 @@ docker run -it --rm alpine /bin/ash
 # Alpine的源文件为：
 /etc/apk/repositories，
 
-# 默认的源地址为：http://dl-cdn.alpinelinux.org/
+# 本镜像默认的源地址为：http://dl-cdn.alpinelinux.org/
+
+更换阿里云为中国科技大学的源CDN:
+sed -i -e 's/mirrors.aliyun.com/mirrors.ustc.edu.cn/' /etc/apk/repositories
 
 
 #可以编辑源文件 /etc/apk/repositories，
@@ -107,3 +116,14 @@ docker build -f Dockerfile.ssh -t tekintian/alpine:3.8-ssh .
 
 ~~~
 
+## Support 技术支持
+
+​	需要其他的特定环境或则模块支持，可联系定制开发容器 ， Email: tekintian@gmail.com  QQ:932256355
+
+
+
+
+
+如果您觉得本项目对您有用，请打赏支持开发，谢谢！
+
+![donate](donate.png)
