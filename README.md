@@ -1,41 +1,18 @@
-# Alpine Docker Container for China and sshd
+# Alpine Docker Container for China User
 
 更换了国内源，和安装了openrc 管理工具的 Alpine Docker 镜像
 
 
 
-~~~shell
-# 国内 alpine镜像
-docker run --name alpine tekintian/alpine:latest 
-
-# 带ssh的国内镜像
-
-docker run -it -d --name alpine-ssh -p 22:22  -p /yourlocaldir:/home  tekintian/alpine:3.8-ssh
-
-# 注意ssh客户端连接的时候需要选择 scp 协议
-
-~~~
 
 
 
 
+默认root密码：123456
 
- 暴露端口 22 ，  -p /yourlocaldir:/home 将本地文件夹/yourlocaldir 映射到alpine容器 /home文件夹
+如果需要自定义root密码，在容器运行的时候增加环境变量 ROOT_PASS='secret-pass',  暴露端口 22 ，  -p /yourlocaldir:/home 将本地文件夹/yourlocaldir 映射到alpine容器 /home文件夹
 
-~~~shell
-#运行容器
-docker run -it -d --name alpine-ssh -p 22:22  -p /yourlocaldir:/home  tekintian/alpine:3.8-ssh
-
-# 登录容器，
-# 重启SSH服务
-rc-service sshd restart
-# 设置你自己的root密码
-docker exec -it alpine-ssh  sh
-# 设置你的密码
-passwd
-~~~
-
-
+docker run -it -d --name alpine -p 22:22  -e ROOT_PASS=123456  -p /yourlocaldir:/home  tekintian/alpine:3.8-ssh
 
 
 
@@ -122,7 +99,7 @@ https://mirrors.ustc.edu.cn/alpine/v3.6/community/
 
 ```
 
-
+/Bitbucket/tools/Alpine
 
 - 容器build
 ~~~shell
