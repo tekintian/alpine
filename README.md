@@ -2,7 +2,8 @@
 
 Change the mirror to mirrors.aliyun.com
 Add default time zone for Asia/Shanghai,
-For more info about [TIME ZONE](https://timezonedb.com/time-zones)
+For more info about [TIME ZONE](https://timezonedb.com/time-zones) 
+ [Alpine Linux Setting the time zone](https://wiki.alpinelinux.org/wiki/Setting_the_timezone)
 
 tekintian/alpine:latest  安装了openrc 管理工具的 Alpine Docker 镜像
 
