@@ -1,7 +1,8 @@
 # Alpine Docker Container for China User
 
 Change the mirror to mirrors.aliyun.com
-更换源为阿里云镜像加速，
+Add default time zone for Asia/Shanghai,
+For more info about [TIME ZONE](https://timezonedb.com/time-zones)
 
 tekintian/alpine:latest  安装了openrc 管理工具的 Alpine Docker 镜像
 

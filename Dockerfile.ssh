@@ -1,6 +1,10 @@
 FROM alpine:latest
 LABEL maintainer="TekinTian tekintian@gmail.com"
 
+#set TimeZone
+ARG TZ="Asia/Shanghai"
+ENV TZ ${TZ}
+
 RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories && \
   apk update && \
   apk add openrc openssh-server --no-cache && \
@@ -11,6 +15,8 @@ RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositori
   sed -i "s@^#PasswordAuthentication yes@&\nPasswordAuthentication yes@" /etc/ssh/sshd_config && \
   sed -i "s@^#PermitRootLogin.*@&\nPermitRootLogin yes@" /etc/ssh/sshd_config && \
   \
+  ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime && \
+  echo ${TZ} > /etc/timezone && \
   rm -rf /var/cache/apk/*
 
 #设置默认入口程序
