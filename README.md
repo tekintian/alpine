@@ -116,8 +116,14 @@ https://mirrors.ustc.edu.cn/alpine/v3.9/community/
 - 容器build
 ~~~shell
 docker build -f ssh.Dockerfile -t tekintian/alpine:3.9-ssh .
+docker build -f 3.9rc.Dockerfile -t tekintian/alpine:3.9rc .
 
+docker build -f Dockerfile -t tekintian/alpine .
+
+docker build -f 3.9.Dockerfile -t tekintian/alpine:3.9 .
 docker build -f 3.8.Dockerfile -t tekintian/alpine:3.8 .
+docker build -f 3.7.Dockerfile -t tekintian/alpine:3.7 .
+docker build -f 3.6.Dockerfile -t tekintian/alpine:3.6 .
 
 ~~~
 
