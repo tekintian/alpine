@@ -16,5 +16,20 @@ RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositori
 	&& ln -s /usr/share/zoneinfo/PRC /etc/localtime \
 	&& ln -s /usr/share/zoneinfo/PRC /usr/share/zoneinfo/Asia/Shanghai \
 	&& echo "Asia/Shanghai" >  /etc/timezone \
+	\
+	#install openssh-server
+	&& apk add openrc openssh-server --no-cache \
+	&& rc-update add sshd \
+	&& mkdir -p /run/openrc \
+    && touch /run/openrc/softlevel \
+    && sed -i "s@^#Port.*@&\nPort 22@" /etc/ssh/sshd_config \
+    && sed -i "s@^#PasswordAuthentication yes@&\nPasswordAuthentication yes@" /etc/ssh/sshd_config \
+    && sed -i "s@^#PermitRootLogin.*@&\nPermitRootLogin yes@" /etc/ssh/sshd_config \
 	&& rm -rf /var/cache/apk/* \
 	&& apk del .build-deps
+
+#设置默认入口程序
+ENTRYPOINT ["/bin/sh"]
+
+EXPOSE 22
+WORKDIR /home
