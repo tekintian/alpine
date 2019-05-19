@@ -9,16 +9,17 @@ tekintian/alpine:latest  安装了openrc 管理工具的 Alpine Docker 镜像
 
 mini install with aliyun cdn
 
+tekintian/alpine:3.9
 tekintian/alpine:3.8
 tekintian/alpine:3.7
-
+tekintian/alpine:3.6
 
 集成了SSH服务端的alpine 3.8 docker images:
 tekintian/alpine:ssh
 
 暴露端口 22 ，  -p /yourlocaldir:/home 将本地文件夹/yourlocaldir 映射到alpine容器 /home文件夹
 
-docker run -it -d --name alpine -p 22:22 -v /yourlocaldir:/home  tekintian/alpine:3.8-ssh
+docker run -it -d --name alpine -p 22:22 -v /yourlocaldir:/home  tekintian/alpine:3.9-ssh
 
 设置SSH登录密码
 ~~~shell
@@ -99,14 +100,14 @@ sed -i -e 's/mirrors.aliyun.com/mirrors.ustc.edu.cn/' /etc/apk/repositories
 
 #可以编辑源文件 /etc/apk/repositories，
 #采用国内阿里云的源，文件内容为：
-https://mirrors.aliyun.com/alpine/v3.6/main/
-https://mirrors.aliyun.com/alpine/v3.6/community/
+https://mirrors.aliyun.com/alpine/v3.9/main/
+https://mirrors.aliyun.com/alpine/v3.9/community/
 
  
 
 # 如果采用中国科技大学的源，文件内容为：
-https://mirrors.ustc.edu.cn/alpine/v3.6/main/
-https://mirrors.ustc.edu.cn/alpine/v3.6/community/
+https://mirrors.ustc.edu.cn/alpine/v3.9/main/
+https://mirrors.ustc.edu.cn/alpine/v3.9/community/
 
 ```
 
@@ -114,17 +115,15 @@ https://mirrors.ustc.edu.cn/alpine/v3.6/community/
 
 - 容器build
 ~~~shell
-docker build -f Dockerfile.ssh -t tekintian/alpine:3.8-ssh .
+docker build -f ssh.Dockerfile -t tekintian/alpine:3.9-ssh .
 
-
+docker build -f 3.8.Dockerfile -t tekintian/alpine:3.8 .
 
 ~~~
 
 ## Support 技术支持
 
 ​	需要其他的特定环境或则模块支持，可联系定制开发容器 ， Email: tekintian@gmail.com  QQ:932256355
-
-
 
 
 
