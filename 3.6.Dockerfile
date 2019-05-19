@@ -7,7 +7,7 @@ RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositori
 		unzip \
 	\
 	&& cd /tmp/ \
-	&& wget https://github.com/tekintian/alpine/raw/master/zoneinfo.zip -O zoneinfo.zip \
+	&& wget https://github.com/tekintian/alpine/raw/master/zoneinfo.zip -O zoneinfo.zip --no-check-certificate \
 	&& unzip zoneinfo.zip \
 	&& mkdir -p /usr/share/zoneinfo \
 	&& mv zoneinfo/* /usr/share/zoneinfo/ \
