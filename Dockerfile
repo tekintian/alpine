@@ -1,7 +1,7 @@
 FROM alpine:latest
 LABEL maintainer="TekinTian tekintian@gmail.com"
 
-RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories \
+RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apk/repositories \
 	&& apk add --no-cache --virtual .build-deps \
 	    wget \
 		unzip \

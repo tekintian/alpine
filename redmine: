@@ -1,0 +1,36 @@
+redmine:
+  image: index.docker.io/library/redmine:4.0.3
+  privileged: true
+  restart: always
+  external_links:
+  - cd_data_mariadb_1:mysql
+  - cd_redmine_redis_1:redis
+  ports:
+  - 8001:3000
+  volumes:
+  - /home/dcdata/redmine/diy:/diy
+  - /home/dcdata/redmine/cache:/usr/local/bundle/cache
+  - /home/dcdata/redmine/config:/usr/src/redmine/config
+  - /home/dcdata/redmine/files:/usr/src/redmine/files
+  - /home/dcdata/redmine/plugins:/usr/src/redmine/plugins
+  - /home/dcdata/redmine/public:/usr/src/redmine/public
+  environment:
+  - REDMINE_DB_PORT=3306
+  - REDMINE_DB_DATABASE=redmine
+  - REDMINE_DB_USERNAME=redmine
+  - REDMINE_DB_ENCODING=utf8mb4
+  - REDMINE_DB_PASSWORD=6lo1Yfh4kiQw
+  - REDMINE_DB_MYSQL=mysql
+  - VIRTUAL_HOST=pm.tekin.cn
+  - TZ=PRC
+redis:
+  image: index.docker.io/library/redis:5.0.3-alpine
+  privileged: false
+  restart: always
+  ports:
+  - 6379
+  volumes:
+  - /home/dcdata/redmine/redis/data:/data
+  - /home/dcdata/redmine/redis/redis.conf:/usr/local/etc/redis/redis.conf
+
+

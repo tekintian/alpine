@@ -1,7 +1,8 @@
-FROM alpine:3.7
+FROM alpine:3.10
 LABEL maintainer="TekinTian tekintian@gmail.com"
 
 RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apk/repositories \
+	&& apk update \
 	&& apk add --no-cache --virtual .build-deps \
 	    wget \
 		unzip \
