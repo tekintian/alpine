@@ -5,6 +5,13 @@ Add default time zone for Asia/Shanghai,
 For more info about [TIME ZONE](https://timezonedb.com/time-zones) 
  [Alpine Linux Setting the time zone](https://wiki.alpinelinux.org/wiki/Setting_the_timezone)
 
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+Looks like this:
+RUN apk add --no-cache tzdata
+ENV TZ Asia/Shanghai
+
+
 tekintian/alpine:latest  安装了openrc 管理工具的 Alpine Docker 镜像
 
 mini install with aliyun cdn
@@ -115,15 +122,23 @@ https://mirrors.ustc.edu.cn/alpine/v3.9/community/
 
 - 容器build
 ~~~shell
+
+docker build -f 3.9_glibc_i18n.Dockerfile -t tekintian/alpine:3.9glibc-i18n .
+
 docker build -f ssh.Dockerfile -t tekintian/alpine:3.9-ssh .
 docker build -f 3.9rc.Dockerfile -t tekintian/alpine:3.9rc .
 
 docker build -f Dockerfile -t tekintian/alpine .
 
+docker build -f 3.10.Dockerfile -t tekintian/alpine:3.10 .
+
 docker build -f 3.9.Dockerfile -t tekintian/alpine:3.9 .
 docker build -f 3.8.Dockerfile -t tekintian/alpine:3.8 .
 docker build -f 3.7.Dockerfile -t tekintian/alpine:3.7 .
 docker build -f 3.6.Dockerfile -t tekintian/alpine:3.6 .
+
+
+
 
 ~~~
 

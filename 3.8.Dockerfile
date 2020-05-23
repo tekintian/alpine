@@ -1,6 +1,8 @@
 FROM alpine:3.8
 LABEL maintainer="TekinTian tekintian@gmail.com"
 
+ENV LANG=C.UTF-8
+
 RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apk/repositories \
 	&& apk update \
 	&& apk add --no-cache --virtual .build-deps \
@@ -18,4 +20,5 @@ RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apk/
 	&& ln -s /usr/share/zoneinfo/PRC /usr/share/zoneinfo/Asia/Shanghai \
 	&& echo "Asia/Shanghai" >  /etc/timezone \
 	&& rm -rf /var/cache/apk/* \
-	&& apk del .build-deps
+	&& apk del .build-deps \
+	&& rm -rf /tmp/*

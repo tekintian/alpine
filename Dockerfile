@@ -17,4 +17,5 @@ RUN sed -i -e 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apk/
 	&& ln -s /usr/share/zoneinfo/PRC /usr/share/zoneinfo/Asia/Shanghai \
 	&& echo "Asia/Shanghai" >  /etc/timezone \
 	&& rm -rf /var/cache/apk/* \
-	&& apk del .build-deps
+	&& apk del .build-deps \
+	&& rm -rf /tmp/*
